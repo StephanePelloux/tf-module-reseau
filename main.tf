@@ -1,7 +1,7 @@
 data "template_file" "network_interface" {
   template = <<EOF
-auto ${network_bridge}
-iface ${network_bridge} inet manual
+auto ${bridge_name}
+iface ${bridge_name} inet manual
     bridge_ports none
     bridge_stp off
     bridge_fd 0
