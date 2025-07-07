@@ -4,8 +4,8 @@ variable "bridge_name" {
   default     = "vmbr0"
 }
 
-variable "vlan_tag" {
-  description = "Tag VLAN à appliquer pour l'isolation"
+variable "vlan_id" {
+  description = "VLAN"
   type        = number
   default = 0
 }
