@@ -1,0 +1,10 @@
+tests/.terraform.lock.hcl
+tests/terraform.tfstate
+tests/terraform.tfstate.backup
+tests/.terraform/
+.editorconfig
+.terraform/
+terraform.tfstate.backup
+terraform.tfstate
+.terraform.lock.hcl
+.env
