@@ -11,7 +11,7 @@ EOF
 
   vars = {
     bridge_name = var.network_bridge
-    mtu         = var.mtu
+    mtu         = tostring(var.mtu)
   }
 }
 

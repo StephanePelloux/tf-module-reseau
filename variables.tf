@@ -26,3 +26,9 @@ variable "parent_interface" {
   type        = string
   default     = "virtio"
 }
+
+variable "network_model" {
+  description = "Network interface Model (virtio, e1000...)"
+  type        = string
+  default     = "virtio"
+}
