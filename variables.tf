@@ -1,4 +1,4 @@
-variable "bridge_name" {
+variable "network_bridge" {
   description = "Bridge name"
   type        = string
   default     = "vmbr0"
@@ -7,7 +7,7 @@ variable "bridge_name" {
 variable "vlan_id" {
   description = "VLAN"
   type        = number
-  default = 0
+  default     = 0
 }
 
 # variable "cluster_id" {

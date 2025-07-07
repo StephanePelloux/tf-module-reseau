@@ -1,7 +1,7 @@
 data "template_file" "network_interface" {
   template = <<EOF
-auto ${bridge_name}
-iface ${bridge_name} inet manual
+auto ${network_bridge}
+iface ${network_bridge} inet manual
     bridge_ports none
     bridge_stp off
     bridge_fd 0
@@ -10,7 +10,7 @@ iface ${bridge_name} inet manual
 EOF
 
   vars = {
-    bridge_name = var.bridge_name
+    bridge_name = var.network_bridge
     mtu         = var.mtu
   }
 }
@@ -22,8 +22,8 @@ resource "null_resource" "network_config" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo '${data.template_file.network_interface.rendered}' > /etc/network/interfaces.d/${var.bridge_name}.cfg",
-      "ifup ${var.bridge_name}"
+      "echo '${data.template_file.network_interface.rendered}' > /etc/network/interfaces.d/${var.network_bridge}.cfg",
+      "ifup ${var.network_bridge}"
     ]
   }
 }
