@@ -1,29 +1,10 @@
-data "template_file" "network_interface" {
-  template = <<EOF
-auto ${bridge_name}
-iface ${bridge_name} inet manual
-    bridge_ports none
-    bridge_stp off
-    bridge_fd 0
-    bridge_vlan_aware yes
-    mtu ${mtu}
-EOF
-
-  vars = {
-    bridge_name = var.network_bridge
-    mtu         = tostring(var.mtu)
-  }
-}
-
-resource "null_resource" "network_config" {
+resource "null_resource" "network_debug" {
   triggers = {
-    config = data.template_file.network_interface.rendered
+    bridge_name = var.network_bridge
+    mtu         = var.mtu
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "echo '${data.template_file.network_interface.rendered}' > /etc/network/interfaces.d/${var.network_bridge}.cfg",
-      "ifup ${var.network_bridge}"
-    ]
+  provisioner "local-exec" {
+    command = "echo [TEST NETWORK MODULE] Bridge=${var.network_bridge} MTU=${var.mtu}"
   }
 }
